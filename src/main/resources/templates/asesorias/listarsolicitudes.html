@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Content/bootstrap.min.css">
+    <script src="/Scripts/bootstrap.bundle.min.js"></script>
+    <title>Crear - Asesorias</title>
+</head>
+<body>
+    <!-- barra de navegación de la pagina principal -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Asesorias en linea</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" th:href="@{/asesorias/listar}">Principal</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/asesorias/agregar}">Crear Asesorias</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/asesorias/solicitud}">Solicitar Asesorias</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/asesorias/listarsolicitudes}">Mis Solicitudes</a>
+              </li>
+              
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Buscar Asesorías" aria-label="Search">
+              <button class="btn btn-success" type="submit">Buscar</button>
+            </form>
+          </div>
+        </div>
+      </nav>     
+      
+     <div class="row pt-5">
+			<div class="col-2"></div>
+				<div class="col-9">
+				<h4>Mis Solicitudes</h4>
+				
+				
+					<div th:if="*{soli != null}">
+               		<table class="table table-success table-striped">
+
+                    <tr>
+                        <th>
+                            Clave
+                        </th>
+                        <th>
+                           	Alumno
+                        </th>
+                        <th>
+                            Catedratico
+                        </th>
+                        <th>
+                            Materia Solicitada
+                        </th>
+                        <th>
+                            Fecha de Solicitud
+                        </th>
+                        <th>
+                            Fecha de inicio
+                        </th>
+                        <th>
+                           	Fecha de Finalización
+                        </th>
+                    </tr>
+                    
+                    <tr th:each= "solicitudes : ${soli}">
+                    	 <td th:text="${solicitudes.idsolicitud}"></td>
+                         <td th:text="${solicitudes.nombrecompleto}"></td>
+                         <td th:text="${solicitudes.asesor}"></td>
+                     	 <td th:text="${solicitudes.materiasolicitada}"></td>
+                     	 <td th:text="${solicitudes.fechasolicitud}"></td>
+                     	 <td th:text="${solicitudes.fechainicio}"></td>
+                     	 <td th:text="${solicitudes.fechafin}"></td>
+                    </tr>
+                    </table>
+               </div>
+				</div>		
+				
+			<div class="col-2"></div>
+		</div>	
+</body>
+</html>

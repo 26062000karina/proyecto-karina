@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Content/bootstrap.min.css">
+    <script src="/Scripts/bootstrap.bundle.min.js"></script>
+    <title>Crear - Asesorias</title>
+</head>
+<body>
+    <!-- barra de navegación de la pagina principal -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Asesorias en linea</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" th:href="@{/asesorias/listar}">Principal</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/asesorias/agregar}">Crear Asesorias</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/asesorias/solicitud}">Solicitar Asesorias</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" th:href="@{/asesorias/listarsolicitudes}">Mis Solicitudes</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Buscar Asesorías" aria-label="Search">
+              <button class="btn btn-success" type="submit">Buscar</button>
+            </form>
+          </div>
+        </div>
+      </nav>     
+      
+     <div class="row pt-5">
+			<div class="col-2"></div>
+				<div class="col-9">
+				<h4>Asesorias Disponibles</h4>
+				
+				
+					<div th:if="*{replicas != null}">
+               		<table class="table table-success table-striped">
+
+                    <tr>
+                        <th>
+                            Descripción
+                        </th>
+                        <th>
+                           	Profesor
+                        </th>
+                        <th>
+                            Fecha de Solicitacion
+                        </th>
+                        <th>
+                            Materia
+                        </th>
+                    </tr>
+                    
+                    <tr th:each= "replica : ${replicas}">
+                    	 <td th:text="${replica.descasesoria}"></td>
+                         <td th:text="${replica.nombreprofesor}"></td>
+                         <td th:text="${replica.fechacreacion}"></td>
+                     	 <td th:text="${replica.materiaasesorar}"></td>
+                    </tr>
+                    </table>
+               </div>
+				</div>		
+				
+			<div class="col-2"></div>
+		</div>	
+</body>
+</html>

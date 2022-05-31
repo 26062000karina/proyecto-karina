@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="/Content/style.css">
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="sidenav">
+        <div class="login-main-text">
+            <h1>Asesorías en linea</h1>
+            <img class="login-img" src="/Content/img/asesorias.png" alt="asesorias">
+        </div>
+    </div>
+    <div class="main">
+        <div class="col-md-9">
+            <div class="login-form">
+                <div th:if="*{error !=null}" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                    <strong>Alerta!</strong> <h4 th:text=*{error}></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                </div>
+            <form action="#" th:action="@{/alumno/agregar}" th:object="${alumno}" method="post">
+                <div class="form-group">
+                    <label for="id">No. Control</label>
+                    <input name="id" id="id" th:value="*{id}" type="number" class="form-control" placeholder="Numero de Control" required>
+                </div>
+                <div class="form-group">
+                    <label for="Nombre">Nombre(s)</label>
+                    <input th:field="*{nombre}" name="Nombre" id="Nombre" type="text" class="form-control" placeholder="Nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="Apellidos">Apellidos</label>
+                    <input th:field="*{apellidos}" name="Apellidos" id="Apellidos" type="text" class="form-control" placeholder="Apellidos" required>
+                </div>
+                <div class="form-group">
+                    <label for="Fecha">Fecha de Nacimiento</label>
+                    <input th:value="*{fecha}" name="Fecha" id="Fecha" type="date" class="form-control" placeholder="Fecha de Nacimiento" required>
+                </div>
+                <div class="form-group">
+                    <label for="Sexo">Sexo:</label>
+                    <select th:field="*{sexo}" name="Sexo" id="Sexo" class="form-select" aria-label="Seleccione una opción" required>
+                        
+                        <option value="" th:value="Masuculino" th:text="Masculino"></option>
+                        <option value="" th:value="Femenino" th:text="Femenino"></option>
+                        
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Correo">Correo</label>
+                    <input th:value="*{correo}" name="Correo" id="Correo" type="email" class="form-control" placeholder="Correo" required>
+                </div>
+                <div class="form-group">
+                    <label for="Contrasena">Contraseña</label>
+                    <input id="Contrasena" name="contrasena" type="password" class="form-control" placeholder="Contraseña" required>
+                </div>
+                <br>
+                <p>¿Ya tienes una cuenta? <a th:href="@{/alumno/validar}">Iniciar Sesión</a> </p>
+                <button type="submit" class="btn btn-black">Registrar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

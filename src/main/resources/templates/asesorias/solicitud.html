@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Content/bootstrap.min.css">
+    <script src="/Scripts/bootstrap.bundle.min.js"></script>
+    <title>Solicitar - Asesorias</title>
+</head>
+<body>
+    <!-- barra de navegación de la pagina principal -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Asesorias en linea</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" th:href="@{/asesorias/listar}">Principal</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/asesorias/agregar}">Crear Asesorias</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/asesorias/solicitud}">Solicitar Asesorias</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" th:href="@{/asesorias/listarsolicitudes}">Mis Solicitudes</a>
+              </li>
+              
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Buscar Asesorías" aria-label="Search">
+              <button class="btn btn-success" type="submit">Buscar</button>
+            </form>
+          </div>
+        </div>
+      </nav>     
+      
+      <div class="row bg-light pt-5 pb-lg-5">
+    <div class="col-2"></div>
+    <div class="col-6">
+     			<div th:if="*{error !=null}" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                    <strong>Alerta!</strong> <h4 th:text=*{error}></h4>
+  					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                </div>
+        <h1>Solicitar una nueva asesoria.</h1>
+        <br />
+        <div class="col-6">
+        	<form action="#" th:action="@{solicitud}" th:object="${soliasesoria}" method="post">
+                <div class="form-group">
+                      <label for="nombrep" class="form-label">Nombre Completo:</label>
+                      <input type="text" required="required" th:field="*{nombrecompleto}" class="form-control" placeholder="Nombre del solicitante">
+                </div>
+                <div class="form-group">
+                    <label for="nombreProfesor">Nombre del Asesor</label>
+                    <input th:field="*{asesor}" name="asesor" id="asesor" type="text" class="form-control" placeholder="Nombre del Asesor" required>
+                </div>
+                <div class="form-group">
+                    <label for="fechaCreacion">Fecha de Solicitud.</label>
+                    <input th:value="*{fechasolicitud}" name="fechasolicitud" id="fechaSolicitud" type="date" class="form-control" placeholder="Fecha de Solicitud" required>
+                </div>
+                <div class="form-group">
+                    <label for="fechaCreacion">Fecha de Inicio.</label>
+                    <input th:value="*{fechainicio}" name="fechainicio" id="fechacreacion" type="date" class="form-control" placeholder="Fecha de Inicio" required>
+                </div>
+                <div class="form-group">
+                    <label for="fechaFin">Fecha de Fin.</label>
+                    <input th:value="*{fechafin}" name="fechafin" id="fechacreacion" type="date" class="form-control" placeholder="Fecha de Fin" required>
+                </div>
+                <div class="form-group">
+                    <label for="materiassesorar">Nombre de la materia</label>
+                    <input th:field="*{materiasolicitada}" name="materiasolicitada" id="materiaasesorar" type="text" class="form-control" placeholder="Materia" required>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </form>
+             
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div> 
+</body>
+</html>
